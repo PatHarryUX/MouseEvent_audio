@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
     <!-- app -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scenes/welcome_scene.css">
+    <link rel="stylesheet" href="css/scenes/sun_scene.css">
+    <link rel="stylesheet" href="css/scenes/sea_scene.css">
+    <link rel="stylesheet" href="css/scenes/sky_scene.css">
+    <link rel="stylesheet" href="css/scenes/night_scene.css">
+    <link rel="stylesheet" href="css/scenes/suns_scene.css">
 
   </head>
   <body>
@@ -53,15 +59,14 @@
 
 
     <script id="circles-and-triangles-template" type="text/x-handlebars-template">
-      <div class="container">
+      <div class="container" id="container_01">
         <div class="circle" id="circle_01" data-music="one"></div>
         <div class="circle" id="circle_02" data-music="two"></div>
         <div class="circle" id="circle_03" data-music="three"></div>
         <div class="circle" id="circle_04" data-music="four"></div>
         <div class="circle" id="circle_05" data-music="five"></div>
       </div>
-
-      <div class="container">
+      <div class="container" id="container_02">
         <div class="triangle" id="triangle_01" data-music="six"></div>
         <div class="triangle" id="triangle_02" data-music="seven"></div>
         <div class="triangle" id="triangle_03" data-music="eight"></div>
@@ -131,7 +136,7 @@
     <script type='text/javascript' src='js/app.js'></script>
 -->
 
-
+  <script type='text/javascript' src='js/namespace.js'></script>
   <script type='text/javascript' src='js/app.js'></script>
 
   </body>

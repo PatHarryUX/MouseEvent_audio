@@ -78,6 +78,15 @@ nav a.nav_link.active_link span {
 
 .container {
   position: fixed;
+  transition: all .4s;
+}
+
+.circle {
+  transition: all .4s;
+}
+
+.triangle {
+  transition: all .4s;
 }
 
 
@@ -86,7 +95,7 @@ body {
   width: 100vw;
   overflow: hidden;
   position: relative;
-  transition: background-color 2s;
+  transition: background-color .8s;
 }
 .sun-bg {
   background-color: hsl(20, 85%, 18%);

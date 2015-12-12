@@ -6,6 +6,14 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0' >
     <title>MouseEvent.Audio</title>
 
+    <!-- Scripts -->
+    <!-- cdn's -->
+    <script type='text/javascript' src='http://cdn.tonejs.org/latest/Tone.min.js'></script>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+    <!--<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js'></script>-->
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
+
 
     <!-- Styles -->
     <!-- cdn's -->
@@ -17,21 +25,65 @@
   </head>
   <body>
 
+    <nav role='navigation'>
+      <ul>
+        <li><a class="nav_link active_link" href="#welcome" id="welcome_nav_link"><span></span></a></li>
+        <li><a class="nav_link" href="#sun" id="sun_nav_link"><span></span></a></li>
+        <li><a class="nav_link" href="#sea" id="sea_nav_link"><span></span></a></li>
+        <li><a class="nav_link" href="#sky" id="sky_nav_link"><span></span></a></li>
+        <li><a class="nav_link" href="#night" id="night_nav_link"><span></span></a></li>
+        <li><a class="nav_link" href="#suns" id="suns_nav_link"><span></span></a></li>
+      </ul>
+    </nav>
+    <div id="title">
+      <h2 class="animated fadeIn">welcome</h2>
+    </div>
+
     <div id="app">
 
     </div>
 
 
-    <!-- Scripts -->
-    <!-- cdn's -->
-    <script type='text/javascript' src='http://cdn.tonejs.org/latest/Tone.min.js'></script>
-    <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
 
 
-    <!-- app -->
+
+
+
+
+
+
+    <script id="circles-and-triangles-template" type="text/x-handlebars-template">
+      <div class="container">
+        <div class="circle" id="circle_01" data-music="one"></div>
+        <div class="circle" id="circle_02" data-music="two"></div>
+        <div class="circle" id="circle_03" data-music="three"></div>
+        <div class="circle" id="circle_04" data-music="four"></div>
+        <div class="circle" id="circle_05" data-music="five"></div>
+      </div>
+
+      <div class="container">
+        <div class="triangle" id="triangle_01" data-music="six"></div>
+        <div class="triangle" id="triangle_02" data-music="seven"></div>
+        <div class="triangle" id="triangle_03" data-music="eight"></div>
+        <div class="triangle" id="triangle_04" data-music="nine"></div>
+        <div class="triangle" id="triangle_05" data-music="ten"></div>
+      </div>
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+
+
+
     <script type='text/javascript' src='js/namespace.js'></script>
 
 
@@ -66,25 +118,21 @@
         <h2 class="animated fadeIn">hello</h2>
       </div>
     </script>
-
-
-
-    <script type='text/javascript' src='js/views/nav_view.js'></script>
+-->
 
 <!--
+    <script type='text/javascript' src='js/views/nav_view.js'></script>
     <script type='text/javascript' src='js/views/hello.js'></script>
     <script type='text/javascript' src='js/views/sun.js'></script>
     <script type='text/javascript' src='js/views/sea.js'></script>
     <script type='text/javascript' src='js/iews/sky.js'></script>
     <script type='text/javascript' src='js/iews/.js'></script>
     <script type='text/javascript' src='js/views/suns.js'></script>
+    <script type='text/javascript' src='js/app.js'></script>
 -->
 
-    <script type='text/javascript' src='js/app.js'></script>
 
-
-
-
+  <script type='text/javascript' src='js/app.js'></script>
 
   </body>
 

@@ -6,6 +6,10 @@ $( document ).ready( function(){
       if ( $( this ).hasClass('active_link')  ) {
         console.log( 'link is active' );
       } else {
+
+//This is probably some sort of place to reset the synth
+//Or maybe reset the event handling on the circle and triangle things
+
         $('*').removeClass('active_link');
         $(this).addClass('active_link');
         switch ( $(this).attr('id') ) {
@@ -36,6 +40,7 @@ $( document ).ready( function(){
             if ( app.current_scene.group === 'thick_lines' ) {
               $('#app').removeClass();
               $('#app').addClass('sun_scene');
+              app.audio.sun_scene();
             } else {
               app.current_scene.group = 'thick_lines';
               $('#app').removeClass();
@@ -43,8 +48,10 @@ $( document ).ready( function(){
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
               var circles_and_triangles_template = Handlebars.compile( circles_and_triangles_source );
               $('#app').append( circles_and_triangles_template );
+              app.audio.sun_scene();
             }
             break;
+
           case 'sky_nav_link':
             console.log('sky nav link');
             $('body').removeClass();
@@ -54,28 +61,44 @@ $( document ).ready( function(){
             console.log( app.current_scene.group === 'thick_lines' );
             //Check if the current scene is in the same group as this selected one
             if ( app.current_scene.group === 'thick_lines' ) {
+              console.log("%cHello","font-size: 4em; color: green;");
               $('#app').removeClass();
               $('#app').addClass('sky_scene');
+              app.audio.sky_scene();
             } else {
+              console.log("%cGoodbye","font-size: 4em; color: yellow;");
               app.current_scene.group = 'thick_lines';
               $('#app').removeClass();
               $('#app').addClass('sky_scene');
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
               var circles_and_triangles_template = Handlebars.compile( circles_and_triangles_source );
               $('#app').append( circles_and_triangles_template );
+              app.audio.sky_scene();
             }
             break;
+
+
+
           case 'night_nav_link':
-            console.log('night nav link');
+            console.log( '%cnight nav link','font-size: 3em; color: #555;' );
+
+
+            console.log( this );
+            console.log( app );
+            console.log( app.current_scene );
+            console.log( app.current_scene.group );
+            console.log( 'thick_lines' );
+            console.log( app.current_scene.group === 'thick_lines' );
+
             $('body').removeClass();
             $('#title').html('<h2 class="animated fadeIn">touch the night</h2>');
             $('body').attr('class','night-bg');
-            console.log( app.current_scene.group );
-            console.log( app.current_scene.group === 'thick_lines' );
+
             //Check if the current scene is in the same group as this selected one
             if ( app.current_scene.group === 'thick_lines' ) {
               $('#app').removeClass();
               $('#app').addClass('night_scene');
+              app.audio.night_scene();
             } else {
               app.current_scene.group = 'thick_lines';
               $('#app').removeClass();
@@ -83,10 +106,22 @@ $( document ).ready( function(){
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
               var circles_and_triangles_template = Handlebars.compile( circles_and_triangles_source );
               $('#app').append( circles_and_triangles_template );
+              app.audio.night_scene();
             }
             break;
+
+
           case 'suns_nav_link':
-            console.log('suns nav link');
+          console.log('%csuns nav link','font-size: 3em; color: #555;');
+
+          console.log( this );
+          console.log( app );
+          console.log( app.current_scene );
+          console.log( app.current_scene.group );
+          console.log( 'thick_lines' );
+          console.log( app.current_scene.group === 'thick_lines' );
+
+
             $('body').removeClass();
             $('#title').html('<h2 class="animated fadeIn">touch the sun</h2>');
             $('body').attr('class','suns-bg');
@@ -96,6 +131,7 @@ $( document ).ready( function(){
             if ( app.current_scene.group === 'thick_lines' ) {
               $('#app').removeClass();
               $('#app').addClass('suns_scene');
+              app.audio.suns_scene();
             } else {
               app.current_scene.group = 'thick_lines';
               $('#app').removeClass();
@@ -103,6 +139,7 @@ $( document ).ready( function(){
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
               var circles_and_triangles_template = Handlebars.compile( circles_and_triangles_source );
               $('#app').append( circles_and_triangles_template );
+              app.audio.suns_scene();
             }
             break;
           default:

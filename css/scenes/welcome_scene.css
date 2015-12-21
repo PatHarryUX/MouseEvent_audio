@@ -1,16 +1,11 @@
 
 #app.welcome_scene .welcome_content_container {
-  margin: 15%;
-  /*background: red;*/
-  /*border: 2px solid red;*/
-  /*display: flex;*/
-  /*flex-wrap: nowrap;*/
+  margin: 12.5%;
 }
 
 svg#vector_cursor {
   display: block;
   width: 35%;
-  /*background: blue;*/
   margin: 0 auto;
   transition: all .2s;
   transform: rotate(70deg);
@@ -19,9 +14,8 @@ svg#vector_cursor path{
   fill: white;
   /*background: red;*/
   stroke: rgba(100,100,100,0.5);
-  stroke-width: 2;
+  stroke-width: 1.5;
 }
-
 
 svg#vector_cursor.test_class path{
   animation-duration: 1s;

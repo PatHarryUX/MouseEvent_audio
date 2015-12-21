@@ -1,5 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=Arbutus+Slab);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css);
+
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 
 /*General Styles*/
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  transition: background-color .5s;
+}
+.sun-bg {
+  background-color: hsl(20, 85%, 18%);
+}
+.sky-bg {
+  background-color: rgba(0 ,113,189,0.7);
+}
+.night-bg {
+  background-color: rgba(50,50,50,1.0);
+}
+.suns-bg {
+  background-color: hsl(198, 87%, 50%);
+}
 #title {
   display: block;
   position: fixed;
@@ -23,10 +55,11 @@ h2 {
   font-size: 1.6em;
   text-shadow: 2px 2px 1px rgba(100, 100, 100, 0.1);
 }
-
 .fadeIn {
-  animation-duration: 2s;
+  animation-duration: 1.8s;
 }
+
+
 
 /*Nav Styles*/
 nav {
@@ -34,7 +67,7 @@ nav {
   position: fixed;
   background: red;
   height: 100%;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 nav ul {
@@ -67,7 +100,7 @@ nav a.nav_link span {
   box-shadow: 0px 0px 0px 1px #ababab, 0px 0px 0px 1px #ababab, 0px 1px 2px 1px rgba(51, 51, 51, 0.5);
   transition: box-shadow .2s, background .5s;
   transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
-  z-index: 9999;
+  z-index: 1000;
 }
 
 nav a.nav_link:hover span {
@@ -80,6 +113,122 @@ nav a.nav_link.active_link span {
   box-shadow: 0px 0px 0px 1px rgba(151, 151, 151, 0.5), 0px 1px 1px 0px black;
 }
 
+/* Styles for info modal*/
+
+
+.modal {
+  border-radius: 4px;
+  position: absolute;
+  top: -100%;
+  opacity: 0;
+  width: 70%;
+  display: block;
+  margin: 7.5% 15%;
+  background: white;
+  height: 60%;
+  padding: 5%;
+  transition: top .5s, opacity .8s;
+  z-index:2000;
+}
+
+
+.black_thing {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  background: black;
+  opacity: 0;
+  transition: top .1s, opacity .8s;
+  z-index:1500;
+}
+
+.reveal_modal {
+  top: 0%;
+  opacity: 1;
+}
+.reveal_black_thing {
+  top: 0%;
+  opacity: .7;
+}
+
+.modal_link_container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 40px;
+}
+
+.modal_link {
+  border: 0px;
+  background: transparent;
+  font-size: 3em;
+  color: #555;
+  text-transform: uppercase;
+  font-family: 'Arbutus Slab', serif;
+  letter-spacing: 3px;
+  //font-size: 1.6em;
+  //text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.3);
+  text-shadow: 2px 2px 1px rgba(100, 100, 100, 0.15);
+  transition: all .4s;
+}
+
+.modal_link:hover {
+  transform: scale(1.15);
+  opacity: .75;
+  border: 0px;
+}
+
+.modal_link:focus {
+  transform: scale(1.75);
+  opacity: .85;
+  border: 0px;
+  outline: none;
+}
+.big_question_mark {
+  transform: scale(1.75);
+  border: 0px;
+}
+
+.modal_link:active {
+  outline: none;
+  border: 0px;
+}
+
+#modal_cancel_button {
+  float: right;
+  border: 0px;
+  background: transparent;
+  color: #444;
+  text-shadow: 2px 2px 1px rgba(120,120,120,0.3);
+  transition: .25s;
+}
+
+#modal_cancel_button:hover {
+  transform: scale(1.2);
+  opacity: .7;
+  text-shadow: 1px 1px 1px rgba(130,130,130,0.25);
+}
+
+.modal p{
+  display:block;
+  /*background: red;*/
+  margin-top: 3em;
+  font-size: 1.15em;
+  line-height: 2em;
+  font-family: 'Open Sans', sans-serif;
+  color: #444;
+}
+
+
+
+
+
+
+
+
+/* thick lines scenes styles*/
 .container {
   position: fixed;
   transition: all .4s;
@@ -93,25 +242,4 @@ nav a.nav_link.active_link span {
 .triangle {
   transition: all .3s;
   transition-timing-function: ease-in;
-}
-
-
-body {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
-  transition: background-color .5s;
-}
-.sun-bg {
-  background-color: hsl(20, 85%, 18%);
-}
-.sky-bg {
-  background-color: rgba(0 ,113,189,0.7);
-}
-.night-bg {
-  background-color: rgba(50,50,50,1.0);
-}
-.suns-bg {
-  background-color: hsl(198, 87%, 50%);
 }

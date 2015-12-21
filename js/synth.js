@@ -35,7 +35,19 @@ App.Audio = (function(){
       console.log( '%cmouseover cursor vector' , 'font-size: 3em; color: red;' );
       console.log( event.delegateTarget );
       console.log( $(event.delegateTarget) );
-      $( event.delegateTarget ).attr( 'class' , 'test_class' );
+
+
+
+      if (my_iterator%2 === 1) {
+
+        $( event.delegateTarget ).attr( 'class' , 'test_class' );
+
+      } else {
+
+        $( event.delegateTarget ).attr( 'class' , '' );
+        
+      }
+
 
       if ( my_iterator <= 8 ) {
 
@@ -68,7 +80,10 @@ App.Audio = (function(){
       } else {
         console.log('something is fishy');
       }
+
     }
+
+
 
     var cursor_vector_mouseout_event_handler = function( event ){
       console.log( '%cmouseout cursor vector' ,'font-size: 3em; color: red;');
@@ -78,9 +93,9 @@ App.Audio = (function(){
 
     $( 'svg#vector_cursor' ).off();
     $( 'svg#vector_cursor' ).on( 'mouseover' , 'path' , { 'foo': 'bar' }, cursor_vector_mouseover_event_handler);
-    $( 'svg#vector_cursor' ).on( 'mouseout' , 'path' , { 'foo': 'bar' }, cursor_vector_mouseout_event_handler);
+    //$( 'svg#vector_cursor' ).on( 'mouseout' , 'path' , { 'foo': 'bar' }, cursor_vector_mouseout_event_handler);
     $( 'svg#vector_cursor' ).on( 'mouseover' , 'fill' , { 'foo': 'bar' }, cursor_vector_mouseover_event_handler);
-    $( 'svg#vector_cursor' ).on( 'mouseout' , 'fill' , { 'foo': 'bar' }, cursor_vector_mouseout_event_handler);
+    //$( 'svg#vector_cursor' ).on( 'mouseout' , 'fill' , { 'foo': 'bar' }, cursor_vector_mouseout_event_handler);
   } //End of welcome scene
 
 

@@ -154,4 +154,32 @@ $( document ).ready( function(){
 
     $( '#welcome_nav_link' ).click();
 
+
+    var  remove_modal_helper = function() {
+      $('.modal').removeClass('reveal_modal');
+      $('.black_thing').removeClass('reveal_black_thing');
+      $( '.modal_link' ).removeClass('big_question_mark');
+    };
+
+    $('.modal_link').click(function(){
+      $('.modal').addClass('reveal_modal');
+      $('.black_thing').addClass('reveal_black_thing');
+      $( this ).addClass('big_question_mark');
+    });
+
+    $('.modal_link').focusout(function(){
+
+    });
+
+    $('.black_thing').on( 'click', remove_modal_helper );
+    $('#modal_cancel_button').on('click', remove_modal_helper );
+    
+
+
+
+
+
+
+
+
 });

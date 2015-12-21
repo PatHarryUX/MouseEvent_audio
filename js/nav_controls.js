@@ -6,30 +6,37 @@ $( document ).ready( function(){
       if ( $( this ).hasClass('active_link')  ) {
         console.log( 'link is active' );
       } else {
-
-//This is probably some sort of place to reset the synth
-//Or maybe reset the event handling on the circle and triangle things
-
         $('*').removeClass('active_link');
         $(this).addClass('active_link');
         switch ( $(this).attr('id') ) {
+
           case 'welcome_nav_link':
             console.log('welcome nav link');
             $('body').removeClass();
             $('#app').empty();
+            $('#app').removeClass();
+            $('#app').addClass('welcome_scene');
             $('#title').html('<h2 class="animated fadeIn">welcome</h2>');
             app.current_scene.group = 'welcome';
             console.log( app.current_scene.group );
+            var welcome_scene_template_source = $( '#welcome-scene-template' ).html();
+            var welcome_scene_template = Handlebars.compile( welcome_scene_template_source );
+            $('#app').append( welcome_scene_template );
+            app.audio.welcome_scene();
             break;
+
           case 'sea_nav_link':
             console.log('sea nav link');
             $('body').removeClass();
             $('#app').empty();
+            $('#app').removeClass();
+            $('#app').addClass('sea_scene');
             $('#title').html('<h2 class="animated fadeIn">touch the sea</h2>');
             app.current_scene.group = 'sea';
             console.log( app.current_scene.group );
             app.audio.sea_scene();
             break;
+
           case 'sun_nav_link':
             console.log('sun nav link');
             $('body').removeClass();
@@ -80,24 +87,17 @@ $( document ).ready( function(){
             }
             break;
 
-
-
           case 'night_nav_link':
             console.log( '%cnight nav link','font-size: 3em; color: #555;' );
-
-
-            console.log( this );
-            console.log( app );
-            console.log( app.current_scene );
-            console.log( app.current_scene.group );
-            console.log( 'thick_lines' );
-            console.log( app.current_scene.group === 'thick_lines' );
-
+            // console.log( this );
+            // console.log( app );
+            // console.log( app.current_scene );
+            // console.log( app.current_scene.group );
+            // console.log( 'thick_lines' );
+            // console.log( app.current_scene.group === 'thick_lines' );
             $('body').removeClass();
-
             $('#title').html('<h2 class="animated fadeIn">touch the night</h2>');
             $('body').attr('class','night-bg');
-
             //Check if the current scene is in the same group as this selected one
             if ( app.current_scene.group === 'thick_lines' ) {
               $('#app').removeClass();
@@ -115,18 +115,14 @@ $( document ).ready( function(){
             }
             break;
 
-
           case 'suns_nav_link':
           console.log('%csuns nav link','font-size: 3em; color: #555;');
-
-          console.log( this );
-          console.log( app );
-          console.log( app.current_scene );
-          console.log( app.current_scene.group );
-          console.log( 'thick_lines' );
-          console.log( app.current_scene.group === 'thick_lines' );
-
-
+          // console.log( this );
+          // console.log( app );
+          // console.log( app.current_scene );
+          // console.log( app.current_scene.group );
+          // console.log( 'thick_lines' );
+          // console.log( app.current_scene.group === 'thick_lines' );
             $('body').removeClass();
             $('#title').html('<h2 class="animated fadeIn">touch the sun</h2>');
             $('body').attr('class','suns-bg');
@@ -154,5 +150,8 @@ $( document ).ready( function(){
       }
     });
     /* End of Nav Event Handler*/
+
+
+    $( '#welcome_nav_link' ).click();
 
 });

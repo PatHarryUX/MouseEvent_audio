@@ -11,6 +11,7 @@ App.Audio = (function(){
     console.log(opts.synth_02);
     this.synth_01 = opts.synth_01;
     this.synth_02 = opts.synth_02;
+    this.synth_03 = opts.synth_03;
   }
 
   /* EVENT HANDLERS*/
@@ -83,15 +84,16 @@ App.Audio = (function(){
 //$('.triangles').off('mouseover');
 
     //Set volume for two synths
-    this.synth_01.volume.value = -32.5;
+    this.synth_01.volume.value = -38;
     this.synth_02.volume.value = -100;
+    this.synth_03.volume.value = -100;
 
     //Set up timbre for two synths
     this.synth_01.set({
       "detune": 200,
       "oscillator" : { "type": "sine" },
       "filter" : { "type": "lowpass" } ,
-      "envelope" : { "attack" : 0.005 }
+      "envelope" : { "attack" : 0.025 }
     });
     this.synth_02.set({
       "detune": -200,
@@ -194,7 +196,155 @@ App.Audio = (function(){
   //Setup audio sea_scene Audio Controller
   Controller.prototype.sea_scene = function() {
     console.log('audio controller sea scene');
-  }
+
+    console.log('%caudio controller sun scene','font-size: 2em; color: blue;');
+    console.log(this);
+    console.log(this.synth_01);
+    console.log(this.synth_02);
+
+    //Set volume for two synths
+    this.synth_01.volume.value = -100;
+    this.synth_02.volume.value = -100;
+    this.synth_03.volume.value = -32.5;
+
+    //Set up timbre for synth
+    this.synth_03.set({
+      "detune": 200,
+      "oscillator" : { "type": "sine" },
+      "filter" : { "type": "lowpass" } ,
+      "envelope" : { "attack" : 0.7 }
+    });
+
+
+    var self = this;
+    var play_sea_note = function(some_input) {
+      var pitch = '';
+      function getRandomIntInclusive(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      var sampler = getRandomIntInclusive(1, 850);
+      if ( Math.floor(some_input) > 0 ) {
+        if ( Math.floor(some_input) === 1 && sampler === 6 ) {
+          self.synth_03.triggerAttackRelease([ "A4" ], "8n");
+          console.log( "whereas" );
+        } else if ( Math.floor(some_input) === 2 && sampler === 8 ) {
+          self.synth_03.triggerAttackRelease([ "A4" ], "4n");
+          console.log( "therefore" );
+        }  else if ( Math.floor(some_input) === 3 && sampler === 10 ) {
+          self.synth_03.triggerAttackRelease([ "E4" ], "2n");
+          console.log( "hencforth" );
+        } else if (Math.floor(some_input) === 4 && sampler === 12 ) {
+          self.synth_03.triggerAttackRelease([ "A4" ], "2n");
+          console.log( "heretofor" );
+        } else if (Math.floor(some_input) === 6 && sampler === 14 ) {
+          self.synth_03.triggerAttackRelease([ "A4" ], "2n");
+          console.log( "inasmuch" );
+        } else if (Math.floor(some_input) === 4 && sampler === 16 ) {
+          self.synth_03.triggerAttackRelease([ "E4" ], "2n");
+          console.log( "word" );
+        } else if (Math.floor(some_input) === 2 && sampler === 18 ) {
+          self.synth_03.triggerAttackRelease([ "B4" ], "1n");
+          console.log( "word" );
+        } else if (Math.floor(some_input) === 4 && sampler === 20 ) {
+          self.synth_03.triggerAttackRelease([ "G3" ], "1n");
+          console.log( "hello world" );
+        } else if (Math.floor(some_input) === 6 && sampler === 22 ) {
+          self.synth_03.triggerAttackRelease([ "C3" ], "2n");
+          console.log( "hello world" );
+        }
+      }
+    }
+
+
+    var set_up_ocean = function() {
+
+      var win_width = $( window ).width();
+      var win_height = $( window ).height();
+      console.log( win_width );
+      console.log( win_height );
+      var width = win_width;
+      var height = win_height;
+
+      var nodes = d3.range(60).map(function() { return {radius: Math.random() * 12 - 4}; });
+      var root = nodes[0];
+      var color = d3.scale.category20c();
+
+      root.radius = 0;
+      root.fixed = true;
+
+      var force = d3.layout.force()
+          .gravity(0.00175)
+          .charge(function(d, i) { return i ? 0 : -300; })
+          .nodes(nodes)
+          .size([width, height]);
+
+      force.start();
+
+      var svg = d3.select("#app").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+      svg.selectAll("circle")
+          .data(nodes.slice(1))
+          .enter().append("circle")
+          .attr("r", function(d) { return d.radius; })
+          .style("fill", function(d, i) { return color(i % 3); });
+
+      force.on("tick", function(e) {
+        var q = d3.geom.quadtree(nodes);
+        var i = 0
+        var n = nodes.length;
+
+        while (++i < n) q.visit(collide(nodes[i]));
+
+          svg.selectAll("circle")
+              .attr("cx", function(d) { return d.x; })
+              .attr("cy", function(d) { return d.y; });
+      });
+
+      svg.on("mousemove", function() {
+        var p1 = d3.mouse(this);
+        root.px = p1[0];
+        root.py = p1[1];
+        force.resume();
+      });
+
+      function collide(node) {
+        //console.log("collide callback");
+        play_sea_note(node.radius);
+        var r = node.radius + 16,
+            nx1 = node.x - r,
+            nx2 = node.x + r,
+            ny1 = node.y - r,
+            ny2 = node.y + r;
+        return function(quad, x1, y1, x2, y2) {
+          if (quad.point && (quad.point !== node)) {
+            var x = node.x - quad.point.x,
+                y = node.y - quad.point.y,
+                l = Math.sqrt(x * x + y * y),
+                r = node.radius + quad.point.radius;
+            if (l < r) {
+              l = (l - r) / l * .5;
+              node.x -= x *= l;
+              node.y -= y *= l;
+              quad.point.x += x;
+              quad.point.y += y;
+            }
+          }
+          return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+        };
+      }
+      $('svg').css('opacity',0.53);
+    }
+
+
+
+    set_up_ocean();
+
+
+
+
+  }//End of Sea Scene
 
 
 
@@ -210,8 +360,9 @@ App.Audio = (function(){
 //$('.triangles').off('mouseover');
 
     //Set volume for two synths
-    this.synth_01.volume.value = -30;
-    this.synth_02.volume.value = -30;
+    this.synth_01.volume.value = -32;
+    this.synth_02.volume.value = -38;
+    this.synth_03.volume.value = -100;
 
     //Set up timbre for two synths
     this.synth_01.set({
@@ -346,12 +497,13 @@ App.Audio = (function(){
 //$('.triangles').off('mouseover');
 
     //Set volume for two synths
-    this.synth_01.volume.value = -30;
-    this.synth_02.volume.value = -30;
+    this.synth_01.volume.value = -33;
+    this.synth_02.volume.value = -33;
+    this.synth_03.volume.value = -100;
 
     //Set up timbre for two synths
     this.synth_01.set({
-      "detune": -200,
+      "detune": 200,
       "oscillator" : { "type": "sine" },
       "filter" : { "type" : "lowpass" },
       "envelope" : { "attack" : 0.7 }
@@ -596,21 +748,22 @@ App.Audio = (function(){
     console.log( $('.triangles') );
 
     //Set volume for two synths
-    this.synth_01.volume.value = -22.5;
-    this.synth_02.volume.value = -22.5;
+    this.synth_01.volume.value = -28;
+    this.synth_02.volume.value = -28;
+    this.synth_03.volume.value = -100;
 
     //Set up timbre for two synths
     this.synth_01.set({
       "detune": -200,
       "oscillator" : { "type": "sine" },
       "filter" : { "type" : "lowpass" },
-      "envelope" : { "attack" : 0.85 }
+      "envelope" : { "attack" : 0.65 }
     });
     this.synth_02.set({
       "detune": -200,
       "oscillator" : { "type": "sine" },
       "filter" : { "type" : "lowpass" },
-      "envelope" : { "attack" : 0.15 }
+      "envelope" : { "attack" : 0.05 }
     });
 
     $('.container').off('mouseover');

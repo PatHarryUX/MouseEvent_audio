@@ -28,6 +28,7 @@ $( document ).ready( function(){
             $('#title').html('<h2 class="animated fadeIn">touch the sea</h2>');
             app.current_scene.group = 'sea';
             console.log( app.current_scene.group );
+            app.audio.sea_scene();
             break;
           case 'sun_nav_link':
             console.log('sun nav link');
@@ -43,6 +44,7 @@ $( document ).ready( function(){
               app.audio.sun_scene();
             } else {
               app.current_scene.group = 'thick_lines';
+              $('#app').empty();
               $('#app').removeClass();
               $('#app').addClass('sun_scene');
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
@@ -68,6 +70,7 @@ $( document ).ready( function(){
             } else {
               console.log("%cGoodbye","font-size: 4em; color: yellow;");
               app.current_scene.group = 'thick_lines';
+              $('#app').empty();
               $('#app').removeClass();
               $('#app').addClass('sky_scene');
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
@@ -91,6 +94,7 @@ $( document ).ready( function(){
             console.log( app.current_scene.group === 'thick_lines' );
 
             $('body').removeClass();
+
             $('#title').html('<h2 class="animated fadeIn">touch the night</h2>');
             $('body').attr('class','night-bg');
 
@@ -101,6 +105,7 @@ $( document ).ready( function(){
               app.audio.night_scene();
             } else {
               app.current_scene.group = 'thick_lines';
+              $('#app').empty();
               $('#app').removeClass();
               $('#app').addClass('night_scene');
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();
@@ -134,6 +139,7 @@ $( document ).ready( function(){
               app.audio.suns_scene();
             } else {
               app.current_scene.group = 'thick_lines';
+              $('#app').empty();
               $('#app').removeClass();
               $('#app').addClass('suns_scene');
               var circles_and_triangles_source = $( '#circles-and-triangles-template' ).html();

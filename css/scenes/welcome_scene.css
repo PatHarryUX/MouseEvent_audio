@@ -18,8 +18,8 @@ svg#vector_cursor path{
 }
 
 svg#vector_cursor.test_class path{
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
+  animation-duration: .35s;
+  animation-iteration-count: 1;
   animation-name: funky_cursor;
   animation-timing-function: ease-in;
 }

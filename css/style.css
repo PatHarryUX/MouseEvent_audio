@@ -21,7 +21,7 @@ h2 {
   font-family: 'Arbutus Slab', serif;
   letter-spacing: 3px;
   font-size: 1.6em;
-  text-shadow: 2px 2px 1px rgba(100, 100, 100, 0.15);
+  text-shadow: 2px 2px 1px rgba(100, 100, 100, 0.1);
 }
 
 .fadeIn {
